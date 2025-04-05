@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Wings of Aero</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="main-style.css" />
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #3b82f6;
+      --accent: #f59e0b;
+      --light: #f8fafc;
+      --dark: #0f172a;
+    }
+
+    body {
+      margin: 0;
+      background: var(--light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header Styles (Consistent with Contact Page) */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: var(--accent);
+    }
+
+    .menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .menu a:hover {
+      color: var(--accent);
+    }
+
+    /* About Us Page Specific Styles */
+    .about-section {
+      padding: 4rem 2rem;
+    }
+
+    .hero {
+      background-color: #e0f2f7; /* Light blue background */
+      padding: 5rem 2rem;
+      text-align: center;
+      border-radius: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--dark);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .story, .mission-vision, .expertise, .team, .commitment, .cta {
+      background-color: white;
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+      border-radius: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .story h2, .mission-vision h2, .expertise h2, .team h2, .commitment h2, .cta h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .expertise ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .expertise ul li {
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      background-color: #f9f9f9;
+    }
+
+    .expertise ul li h3 {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .team-profiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member h4 {
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .team-member p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .cta p {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .cta .btn {
+      display: block;
+      width: fit-content;
+      margin: 0 auto;
+      background-color: var(--accent);
+      color: var(--dark);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .cta .btn:hover {
+      background-color: #fbbf24;
+    }
+
+    /* Footer Styles (Consistent with Contact Page) */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-logo {
+        max-width: 150px;
+        margin-bottom: 1rem;
+    }
+
+    .footer-links h3 {
+        color: var(--light);
+        margin-bottom: 1rem;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-links ul li a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: var(--accent);
+    }
+
+    .social-links a {
+        color: #cbd5e1;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+        color: var(--accent);
+    }
+
+    .copyright {
+        background-color: var(--primary);
+        color: #f0f0f0;
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.9rem;
+        margin-top: 2rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">
+          <i class="fas fa-plane"></i> Wings of Aero
+        </a>
+        <ul class="menu">
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-cogs"></i> Services</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="about-section">
+    <div class="container">
+      <section class="hero">
+        <h1>Soaring Beyond Expectations in Aviation Innovation</h1>
+        <p>At Wings of Aero, we are driven by a passion for flight and a commitment to excellence in aerospace engineering. We provide innovative and reliable solutions to meet the evolving needs of the aviation industry.</p>
+      </section>
+
+      <section class="story">
+        <h2>Our Journey: From Vision to Flight</h2>
+        <p>Wings of Aero was founded by a team of dedicated aerospace engineers who shared a common vision: to contribute meaningfully to the advancement of aeronautics. Recognizing a need for agile and expert partners in the design, analysis, and manufacturing sectors, we embarked on a journey to build a company founded on principles of innovation, quality, and client collaboration. From our early days, we have been committed to pushing the boundaries of what's possible in aerospace, always striving for solutions that are both effective and efficient.</p>
+        <p>Over the years, we have achieved significant milestones, working on diverse projects that have broadened our expertise and strengthened our reputation. Our commitment to continuous learning and adaptation ensures that we remain at the forefront of technological advancements in the industry.</p>
+      </section>
+
+      <section class="mission-vision">
+        <h2>Our Guiding Principles: Mission & Vision</h2>
+        <div style="text-align: center;">
+          <h3>Our Mission</h3>
+          <p>To provide innovative and reliable aerospace solutions that empower our clients to achieve their aviation goals through exceptional engineering, collaborative partnerships, and unwavering commitment to quality.</p>
+          <h3>Our Vision</h3>
+          <p>To be a recognized leader in the global aerospace industry, renowned for our technical expertise, innovative spirit, and dedication to shaping the future of flight.</p>
+        </div>
+      </section>
+
+      <section class="expertise">
+        <h2>Our Expertise: Delivering Comprehensive Aviation Solutions</h2>
+        <ul>
+          <li>
+            <h3>Aerospace Vehicle Design</h3>
+            <p>From initial concept development to detailed design and customization, our experienced engineers leverage cutting-edge tools and methodologies to create efficient, safe, and high-performing aerospace vehicles.</p>
+          </li>
+          <li>
+            <h3>Aerospace Vehicle Analysis</h3>
+            <p>We offer comprehensive analytical services, including structural analysis, aerodynamic analysis (CFD), finite element analysis (FEA), and performance evaluation, ensuring the integrity and optimal performance of your designs.</p>
+          </li>
+          <li>
+            <h3>Manufacturing</h3>
+            <p>Through strategic partnerships and a focus on precision, we facilitate the manufacturing of aerospace components and assemblies, adhering to the highest quality standards and specifications.</p>
+          </li>
+          <li>
+            <h3>Flight Testing</h3>
+            <p>Our flight testing services encompass meticulous planning, execution, and in-depth data analysis to validate aircraft performance, safety, and compliance with regulatory requirements.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="team">
+        <h2>Meet Our Team: The Engineers of Innovation</h2>
+        <p style="text-align: center;">Our team comprises experienced and passionate aerospace engineers, designers, and aviation professionals dedicated to delivering exceptional results.</p>
+        <div class="team-profiles">
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 1">
+            <h4>John Doe</h4>
+            <p>Lead Engineer</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 2">
+            <h4>Jane Smith</h4>
+            <p>Design Specialist</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/100" alt="Team Member 3">
+            <h4>Peter Jones</h4>
+            <p>Analysis Expert</p>
+          </div>
+          </div>
+      </section>
+
+      <section class="commitment">
+        <h2>Our Commitment to Quality & Innovation</h2>
+        <p>At Wings of Aero, we are unwavering in our commitment to delivering solutions of the highest quality. We adhere to rigorous standards and continuously strive for excellence in every project we undertake. Innovation is at the heart of our approach, and we are constantly exploring new technologies and methodologies to provide our clients with the most advanced and effective solutions. Our client-centric philosophy ensures that we listen attentively to your needs and tailor our expertise to achieve your specific objectives.</p>
+      </section>
+
+      <section class="cta">
+        <h2>Ready to Partner with Us?</h2>
+        <p>We are eager to discuss your aerospace engineering needs and explore how Wings of Aero can help you achieve your goals.</p>
+        <a href="contact.html" class="btn">Contact Us Today</a>
+      </section>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+        <div class="footer-links">
+            <img src="https://wingsofaero.in/wp-content/uploads/2023/03/oie_transparent-150x31.png" alt="Wings of Aero" class="footer-logo">
+            <p>Innovative aviation solutions for a connected world.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">Aerospace Vehicle Design</a></li>
+                <li><a href="#">Aerospace Vehicle Analysis</a></li>
+                <li><a href="#">Manufacturing</a></li>
+                <li><a href="#">Flight Testing</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#">Vision and Mission</a></li>
+                <li><a href="#">Latest News</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h3>Contact</h3>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Employee Corner</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2023 Wings of Aero. All Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>

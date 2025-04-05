@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings of Aero | Aviation Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .menu li {
+            position: relative;
+        }
+        
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .menu a:hover {
+            color: var(--accent);
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            width: 200px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content li {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+        }
+        
+        .dropdown-content a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .image-link {
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            display: block;
+        }
+        
+        .image-link:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-container {
+            position: relative;
+            height: 100%;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-link:hover .image-container img {
+            transform: scale(1.1);
+        }
+        
+        .image-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-content p {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery, .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Dropdown Menu -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-plane"></i> Wings of Aero
+                </a>
+                <ul class="menu">
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="dropdown">
+                        <a href="#"><i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#"><i class="fas fa-globe"></i> Flight Operations</a></li>
+                            <li><a href="#"><i class="fas fa-shield-alt"></i> Safety Solutions</a></li>
+                            <li><a href="#"><i class="fas fa-chart-line"></i> Aviation Analytics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="file:///Users/rohit/Desktop/TEMS%20TECH/WINGSS/about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="file:///Users/rohit/Desktop/TEMS%20TECH/WINGSS/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Soaring to New Heights</h1>
+            <p>Innovative aviation solutions for a connected world. Experience the future of flight with Wings of Aero.</p>
+            <a href="#" class="btn">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Projects Gallery -->
+    <h2 class="section-title">Our Featured Projects</h2>
+    <div class="gallery">
+        <a href="page1.html" class="image-link">
+            <div class="image-container">
+                <img src="1.jpg" alt="Aircraft Design">
+                <div class="image-title">Aerospace Design</div>
+            </div>
+        </a>
+        <a href="page2.html" class="image-link">
+            <div class="image-container">
+                <img src="2.jpg" alt="Flight Control">
+                <div class="image-title">Flight Analysis</div>
+            </div>
+        </a>
+        <a href="page3.html" class="image-link">
+            <div class="image-container">
+                <img src="3.jpg" alt="Aviation Tech">
+                <div class="image-title">Precision Fabrication</div>
+            </div>
+        </a>
+        <a href="page4.html" class="image-link">
+            <div class="image-container">
+                <img src="4.jpg" alt="Training Program">
+                <div class="image-title">Flight Testing</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Services Section -->
+    <h2 class="section-title">Our Core Services</h2>
+    <div class="services">
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aerospace Design">
+            </div>
+            <div class="service-content">
+                <h3>Aerospace Design</h3>
+                <p>Cutting-edge design solutions for next-generation aircraft and spacecraft with advanced simulation tools.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-img">
+                <img src="3.jpg" alt="Flight Analysis">
+            </div>
+            <div class="service-content">
+                <h3>Flight Analysis</h3>
+                <p>Comprehensive flight data analysis and performance optimization using state-of-the-art analytics.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+        <div class="service-card">
+            <div class="service-img">
+                <img src="4.jpg" alt="Manufacturing">
+            </div>
+            <div class="service-content">
+                <h3>Precision Manufacturing</h3>
+                <p>Advanced manufacturing techniques for aerospace components with micron-level precision.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/oie_transparent-150x31.png" alt="Wings of Aero" class="footer-logo">
+                <p>Innovative aviation solutions for a connected world.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Aerospace Vehicle Design</a></li>
+                    <li><a href="#">Aerospace Vehicle Analysis</a></li>
+                    <li><a href="#">Manufacturing</a></li>
+                    <li><a href="#">Flight Testing</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Vision and Mission</a></li>
+                    <li><a href="#">Latest News</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Employee Corner</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Wings of Aero. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>
