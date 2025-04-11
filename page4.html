@@ -3,44 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aerospace Vehicle Manufacturing | Wings of Aero</title>
+    <title>Aerospace Vehicle Flight Testing | Wings of Aero</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #3b82f6;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
+            --primary: #0a1128;
+            --secondary: #001f54;
+            --accent: #1282a2;
+            --light: #f8f9fa;
+            --dark: #1a1a2e;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             background-color: var(--light);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
-        /* Header Styles */
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfedw.ttf) format('truetype');
+        }
+        
+        /* Header Styles - Modernized */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -84,10 +94,26 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            position: relative;
         }
         
         .menu a:hover {
-            color: var(--accent);
+            color: white;
+        }
+        
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .menu a:hover::after {
+            width: 100%;
         }
         
         .dropdown-content {
@@ -95,194 +121,294 @@
             top: 100%;
             left: 0;
             background-color: white;
-            width: 200px;
+            width: 220px;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 10;
+            padding: 0.5rem 0;
         }
         
         .dropdown:hover .dropdown-content {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(5px);
         }
         
         .dropdown-content li {
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid #eee;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content li:hover {
+            background-color: rgba(18, 130, 162, 0.1);
         }
         
         .dropdown-content a {
             color: var(--dark);
+            font-size: 0.95rem;
         }
         
         .dropdown-content a:hover {
             color: var(--primary);
         }
 
-        /* Hero Section */
+        /* Hero Section - Modernized */
         .hero {
             position: relative;
-            height: 70vh;
+            height: 85vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('m1.jpg');
+            background: linear-gradient(rgba(10, 17, 40, 0.85), rgba(0, 31, 84, 0.85)), 
+                        url('https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             text-align: center;
             color: white;
-            animation: fadeIn 1.5s ease;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
+            animation: fadeInUp 1s ease;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
         }
         
         .btn {
             display: inline-block;
             background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.8rem 2rem;
-            border-radius: 2rem;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(18, 130, 162, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(18, 130, 162, 0.4);
         }
         
-        /* Content Sections */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* Content Sections - Modernized */
         .section {
-            padding: 80px 0;
-            max-width: 1200px;
+            padding: 100px 0;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+            margin-bottom: 70px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
         }
         
-        .section-title::after {
+        .section-title h2::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 4px;
             background-color: var(--accent);
-            margin: 0.5rem auto;
             border-radius: 2px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
             align-items: center;
             padding: 0 2rem;
         }
         
         .content-image {
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            height: 400px;
         }
         
         .content-image:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
         
         .content-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-image:hover img {
+            transform: scale(1.05);
         }
         
         .content-text {
             color: var(--gray);
         }
         
+        .content-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
         .content-text p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.1rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
         
         .alt-bg {
-            background-color: #f1f5f9;
+            background-color: #f1f5fe;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .alt-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(18, 130, 162, 0.1) 0%, rgba(255,255,255,0) 70%);
         }
         
         /* Form Section */
         .form-section {
             background-color: var(--light);
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
         }
         
         .form-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 50px;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Footer */
+        /* Footer - Modernized */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
         }
         
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            gap: 3rem;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
         .footer-logo {
-            height: 40px;
-            margin-bottom: 1rem;
+            height: 45px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            line-height: 1.7;
         }
         
         .footer-links h3 {
             color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
         }
         
         .footer-links ul {
@@ -290,66 +416,132 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #e2e8f0;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .footer-links a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
             color: white;
-            font-size: 1.2rem;
+            border-radius: 50%;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
         .social-links a:hover {
-            color: var(--accent);
+            background-color: var(--accent);
             transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
+            color: rgba(255,255,255,0.6);
             font-size: 0.9rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
         @media (max-width: 768px) {
             .menu {
                 gap: 1rem;
+            }
+            
+            .hero {
+                height: 70vh;
+                min-height: 500px;
             }
             
             .hero h1 {
                 font-size: 2.5rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
             .content-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .content-image {
+                height: 350px;
+                order: -1;
             }
             
             .form-container {
                 padding: 30px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
             }
         }
     </style>
@@ -372,8 +564,8 @@
                             <li><a href="#"><i class="fas fa-check-circle"></i> Flight Testing</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -382,8 +574,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Aerospace Vehicle Manufacturing</h1>
-            <p>Precision engineering and advanced manufacturing techniques for the next generation of aerospace vehicles.</p>
+            <h1>Aerospace Vehicle Flight Testing</h1>
+            <p>Aerospace vehicle flight testing is a complex process that involves several stages, including ground tests, pre-flight checks, flight tests, and post-flight analyses.</p>
             <a href="#" class="btn">Get Started</a>
         </div>
     </section>
@@ -391,15 +583,15 @@
     <!-- The Design Section -->
     <section class="section">
         <div class="section-title">
-            <h2>The Design</h2>
+            <h2>Ground Tests</h2>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="m2.jpg" alt="Aerospace Design">
+                <img src="4ground.jpg" alt="Aerospace Design">
             </div>
             <div class="content-text">
-                <p>The first step in manufacturing a new aerospace vehicle is to define the design. This involves specifying the shape, size, materials, and components of the vehicle, based on its intended purpose and performance requirements.</p>
-                <p>Our engineering team uses cutting-edge design methodologies to create vehicles that optimize performance while meeting strict safety and regulatory standards.</p>
+                <p>Before conducting flight tests, the aerospace vehicle must undergo various ground tests to ensure that it is ready for flight. These tests may include structural tests, component tests, and systems integration tests.</p>
+            
             </div>
         </div>
     </section>
@@ -407,15 +599,15 @@
     <!-- 3D Models Section -->
     <section class="section alt-bg">
         <div class="section-title">
-            <h2>3D Models</h2>
+            <h2>Pre-Flight Checks</h2>
         </div>
         <div class="content-grid">
             <div class="content-text">
-                <p>Develop 3D computer-aided design (CAD) models of the vehicle using specialized software tools. These models will serve as the basis for the manufacturing process and allow engineers and designers to visualize and optimize the design.</p>
-                <p>Our CAD models incorporate every detail of the aerospace vehicle, from structural components to electrical systems.</p>
+                <p>
+                    Prior to takeoff, the aerospace vehicle must undergo several pre-flight checks to verify that all systems are functioning correctly. This may involve engine tests, avionics checks, and other tests to verify that the vehicle is ready for flight.</p>
             </div>
             <div class="content-image">
-                <img src="m3.jpg" alt="3D CAD Modeling">
+                <img src="4pre.jpg" alt="3D CAD Modeling">
             </div>
         </div>
     </section>
@@ -423,15 +615,14 @@
     <!-- Materials Section -->
     <section class="section">
         <div class="section-title">
-            <h2>Materials</h2>
+            <h2>Flight Tests</h2>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="m4.jpg" alt="Aerospace Materials">
+                <img src="4testing.jpg" alt="Aerospace Materials">
             </div>
             <div class="content-text">
-                <p>Select the materials that will be used to manufacture the various components of the vehicle. These may include metals, alloys, composites, or plastics, depending on the specific design requirements and performance goals.</p>
-                <p>We utilize advanced materials including carbon fiber composites, titanium alloys, and specialized aluminum alloys.</p>
+                <p>Once the vehicle has passed all ground and pre-flight tests, it is ready for flight testing. During the flight tests, the vehicle’s performance is evaluated, and data is collected on various parameters such as altitude, airspeed, attitude, and control inputs. Flight tests may include various maneuvers, such as climbs, descents, turns, and stalls.</p>
             </div>
         </div>
     </section>
@@ -439,98 +630,19 @@
     <!-- Fabricate Components Section -->
     <section class="section alt-bg">
         <div class="section-title">
-            <h2>Fabricate Components</h2>
+            <h2>Post Flight Analysis</h2>
         </div>
         <div class="content-grid">
             <div class="content-text">
-                <p>Fabricate the various components of the vehicle using specialized manufacturing techniques such as machining, casting, forging, or additive manufacturing.</p>
-                <p>Our manufacturing facilities employ state-of-the-art CNC machines, 3D printers, and robotic assembly systems to produce components with micron-level precision.</p>
+                <p>
+                    After each flight test, the data collected during the flight is analyzed to evaluate the vehicle’s performance and identify any issues that may need to be addressed. This data is also used to refine the vehicle’s design and improve its performance.</p>
             </div>
             <div class="content-image">
-                <img src="m5.jpg" alt="Component Fabrication">
+                <img src="4post.jpg" alt="Component Fabrication">
             </div>
         </div>
     </section>
 
-    <!-- Analysis and Testing Section -->
-    <section class="section">
-        <div class="section-title">
-            <h2>Analysis and Testing</h2>
-        </div>
-        <div class="content-grid">
-            <div class="content-image">
-                <img src="m6.jpg" alt="Aerospace Testing">
-            </div>
-            <div class="content-text">
-                <p>Once the detailed design is completed, the vehicle must undergo a series of analyses and tests to ensure that it meets the performance requirements.</p>
-                <p>Our testing protocols exceed industry standards, with comprehensive stress testing, vibration analysis, and thermal cycling.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Assembly Section -->
-    <section class="section alt-bg">
-        <div class="section-title">
-            <h2>Assembly</h2>
-        </div>
-        <div class="content-grid">
-            <div class="content-text">
-                <p>Assemble the various components of the vehicle into its final configuration, using specialized tools and techniques such as welding, brazing, or bonding.</p>
-                <p>Our assembly process combines skilled craftsmanship with robotic precision to ensure every aerospace vehicle meets exact specifications.</p>
-            </div>
-            <div class="content-image">
-                <img src="m7.jpg" alt="Vehicle Assembly">
-            </div>
-        </div>
-    </section>
-
-    <!-- Install Systems Section -->
-    <section class="section">
-        <div class="section-title">
-            <h2>Install Systems and Components</h2>
-        </div>
-        <div class="content-grid">
-            <div class="content-image">
-                <img src="m8.jpg" alt="Systems Installation">
-            </div>
-            <div class="content-text">
-                <p>Install the various systems and components that are required for the vehicle to operate, such as engines, avionics, electrical systems, and environmental control systems.</p>
-                <p>Our integration specialists carefully install and test each system, ensuring seamless operation and communication between all vehicle components.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testing and Quality Control Section -->
-    <section class="section alt-bg">
-        <div class="section-title">
-            <h2>Testing and Quality Control</h2>
-        </div>
-        <div class="content-grid">
-            <div class="content-text">
-                <p>Test the various systems and components of the vehicle to ensure that they are functioning properly and meet the design specifications.</p>
-                <p>Our comprehensive testing program includes both automated and manual inspections at every stage of production.</p>
-            </div>
-            <div class="content-image">
-                <img src="m7.jpg" alt="Quality Control">
-            </div>
-        </div>
-    </section>
-
-    <!-- Final Vehicle Section -->
-    <section class="section">
-        <div class="section-title">
-            <h2>Final Vehicle</h2>
-        </div>
-        <div class="content-grid">
-            <div class="content-image">
-                <img src="m9.jpg" alt="Completed Aerospace Vehicle">
-            </div>
-            <div class="content-text">
-                <p>Once the vehicle is assembled and tested, complete any finishing touches or painting required to give it a polished, professional appearance.</p>
-                <p>Our final inspection process ensures every aerospace vehicle meets our exacting standards before delivery.</p>
-            </div>
-        </div>
-    </section>
 
     <!-- Form Section -->
     <section class="form-section">

@@ -7,40 +7,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #3b82f6;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
+            --primary: #0a1128;
+            --secondary: #001f54;
+            --accent: #1282a2;
+            --light: #f8f9fa;
+            --dark: #1a1a2e;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             background-color: var(--light);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
-        /* Header Styles - Matching first site */
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfedw.ttf) format('truetype');
+        }
+        
+        /* Header Styles - Modernized */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -84,10 +94,26 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            position: relative;
         }
         
         .menu a:hover {
-            color: var(--accent);
+            color: white;
+        }
+        
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .menu a:hover::after {
+            width: 100%;
         }
         
         .dropdown-content {
@@ -95,195 +121,294 @@
             top: 100%;
             left: 0;
             background-color: white;
-            width: 200px;
+            width: 220px;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateY(15px);
             transition: all 0.3s ease;
             z-index: 10;
+            padding: 0.5rem 0;
         }
         
         .dropdown:hover .dropdown-content {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(5px);
         }
         
         .dropdown-content li {
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid #eee;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content li:hover {
+            background-color: rgba(18, 130, 162, 0.1);
         }
         
         .dropdown-content a {
             color: var(--dark);
+            font-size: 0.95rem;
         }
         
         .dropdown-content a:hover {
             color: var(--primary);
         }
 
-        /* Hero Section - Updated to match theme */
+        /* Hero Section - Modernized */
         .hero {
             position: relative;
-            height: 70vh;
+            height: 85vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://wingsofaero.in/wp-content/uploads/2023/03/Aerospcae-Vehicle-Design_WOA.jpg');
+            background: linear-gradient(rgba(10, 17, 40, 0.85), rgba(0, 31, 84, 0.85)), 
+                        url('https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             text-align: center;
             color: white;
-            animation: fadeIn 1.5s ease;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
+            animation: fadeInUp 1s ease;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
         }
         
         .btn {
             display: inline-block;
             background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.8rem 2rem;
-            border-radius: 2rem;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(18, 130, 162, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(18, 130, 162, 0.4);
         }
         
-        /* Content Sections - Preserved from second site with theme adjustments */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* Content Sections - Modernized */
         .section {
-            padding: 80px 0;
-            max-width: 1200px;
+            padding: 100px 0;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+            margin-bottom: 70px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
+            display: inline-block;
         }
         
-        .section-title::after {
+        .section-title h2::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 4px;
             background-color: var(--accent);
-            margin: 0.5rem auto;
             border-radius: 2px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
             align-items: center;
             padding: 0 2rem;
         }
         
         .content-image {
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            height: 400px;
         }
         
         .content-image:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
         
         .content-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-image:hover img {
+            transform: scale(1.05);
         }
         
         .content-text {
             color: var(--gray);
         }
         
+        .content-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
         .content-text p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.1rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
         
         .alt-bg {
-            background-color: #f1f5f9;
+            background-color: #f1f5fe;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .alt-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(18, 130, 162, 0.1) 0%, rgba(255,255,255,0) 70%);
         }
         
         /* Form Section */
         .form-section {
             background-color: var(--light);
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
         }
         
         .form-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 50px;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Footer - Updated to match first site */
+        /* Footer - Modernized */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
         }
         
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            gap: 3rem;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
         .footer-logo {
-            height: 40px;
-            margin-bottom: 1rem;
+            height: 45px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            line-height: 1.7;
         }
         
         .footer-links h3 {
             color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
         }
         
         .footer-links ul {
@@ -291,80 +416,146 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #e2e8f0;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .footer-links a:hover {
             color: var(--accent);
+            transform: translateX(5px);
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
             color: white;
-            font-size: 1.2rem;
+            border-radius: 50%;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
         
         .social-links a:hover {
-            color: var(--accent);
+            background-color: var(--accent);
             transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
+            color: rgba(255,255,255,0.6);
             font-size: 0.9rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
         @media (max-width: 768px) {
             .menu {
                 gap: 1rem;
+            }
+            
+            .hero {
+                height: 70vh;
+                min-height: 500px;
             }
             
             .hero h1 {
                 font-size: 2.5rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
             .content-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .content-image {
+                height: 350px;
+                order: -1;
             }
             
             .form-container {
                 padding: 30px 20px;
             }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header - Matching first site -->
+    <!-- Header - Modernized -->
     <header>
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <i class="fas fa-plane"></i> Wings of Aero
+                    <i class="fas fa-rocket"></i> Wings of Aero
                 </a>
                 <ul class="menu">
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                     <li class="dropdown">
                         <a href="#"><i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-content">
@@ -373,19 +564,19 @@
                             <li><a href="#"><i class="fas fa-chart-line"></i> Aviation Analytics</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section - Updated -->
+    <!-- Hero Section - Modernized -->
     <section class="hero">
         <div class="hero-content">
             <h1>Aerospace Vehicle Design</h1>
             <p>The design procedures for aerospace vehicles can vary depending on the type of vehicle and its intended use.</p>
-            <a href="#" class="btn">Learn More</a>
+            <a href="#" class="btn">Explore Our Process</a>
         </div>
     </section>
 
@@ -393,12 +584,14 @@
     <section class="section">
         <div class="section-title">
             <h2>Mission Analysis</h2>
+            <p>Defining objectives and requirements for optimal aerospace vehicle performance</p>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/Mission-Analysis.jpg" alt="Mission Analysis">
+                <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Mission Analysis">
             </div>
             <div class="content-text">
+                <h3>Precision Planning</h3>
                 <p>The first step in the design process is to define the mission objectives and requirements for the vehicle. This includes determining the payload capacity, range, speed, altitude, and other performance parameters.</p>
             </div>
         </div>
@@ -408,13 +601,15 @@
     <section class="section alt-bg">
         <div class="section-title">
             <h2>Conceptual Design</h2>
+            <p>Developing innovative configurations for aerospace vehicles</p>
         </div>
         <div class="content-grid">
             <div class="content-text">
+                <h3>Innovative Configurations</h3>
                 <p>Once the mission requirements are defined, the next step is to develop a conceptual design for the vehicle. This involves selecting the vehicle configuration, propulsion system, aerodynamic design, and structural design.</p>
             </div>
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/Conceptual-Design.jpg" alt="Conceptual Design">
+                <img src="aerospaceconceptual.jpg" alt="Conceptual Design">
             </div>
         </div>
     </section>
@@ -423,12 +618,14 @@
     <section class="section">
         <div class="section-title">
             <h2>Preliminary Design</h2>
+            <p>Ensuring the vehicle meets all performance requirements</p>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/UAV.jpg" alt="Preliminary Design">
+                <img src="performancevalidation.jpg" alt="Preliminary Design">
             </div>
             <div class="content-text">
+                <h3>Performance Validation</h3>
                 <p>Once the conceptual design is completed, the next step is to perform a preliminary design analysis to ensure that the vehicle meets the performance requirements. This includes determining the vehicle weight, center of gravity, and stability characteristics.</p>
             </div>
         </div>
@@ -438,13 +635,15 @@
     <section class="section alt-bg">
         <div class="section-title">
             <h2>Detailed Design</h2>
+            <p>Engineering every component to perfection</p>
         </div>
         <div class="content-grid">
             <div class="content-text">
+                <h3>Component Engineering</h3>
                 <p>After the preliminary design analysis is completed, the next step is to develop a detailed design of the vehicle. This includes designing the individual components and subsystems, such as the wings, fuselage, propulsion system, and control systems.</p>
             </div>
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/Detailed-Design.jpg" alt="Detailed Design">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Detailed Design">
             </div>
         </div>
     </section>
@@ -453,12 +652,14 @@
     <section class="section">
         <div class="section-title">
             <h2>Analysis and Testing</h2>
+            <p>Validating designs through rigorous testing protocols</p>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/CFD-Analysis.jpg" alt="Analysis and Testing">
+                <img src="analysis.jpg" alt="Analysis and Testing">
             </div>
             <div class="content-text">
+                <h3>Rigorous Validation</h3>
                 <p>Once the detailed design is completed, the vehicle must undergo a series of analyses and tests to ensure that it meets the performance requirements. This includes performing wind tunnel tests, structural tests, and flight simulations.</p>
             </div>
         </div>
@@ -468,13 +669,15 @@
     <section class="section alt-bg">
         <div class="section-title">
             <h2>Manufacturing and Assembly</h2>
+            <p>Bringing designs to life with precision manufacturing</p>
         </div>
         <div class="content-grid">
             <div class="content-text">
+                <h3>Precision Fabrication</h3>
                 <p>After the vehicle design is validated, the next step is to manufacture and assemble the vehicle components. This includes selecting the appropriate materials and manufacturing techniques, and ensuring that the components are fabricated to the required tolerances.</p>
             </div>
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/Manufacturing.jpg" alt="Manufacturing and Assembly">
+                <img src="manufacturing.jpg" alt="Manufacturing and Assembly">
             </div>
         </div>
     </section>
@@ -483,12 +686,14 @@
     <section class="section">
         <div class="section-title">
             <h2>Flight Test and Certification</h2>
+            <p>Final validation in real-world conditions</p>
         </div>
         <div class="content-grid">
             <div class="content-image">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/Flight-Test.jpg" alt="Flight Test and Certification">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Flight Test and Certification">
             </div>
             <div class="content-text">
+                <h3>Real-World Validation</h3>
                 <p>The final step in the design process is to conduct flight tests to validate the vehicle's performance in real-world conditions. This includes obtaining the necessary regulatory certifications for the vehicle, such as FAA or EASA, and other Government certification.</p>
             </div>
         </div>
@@ -501,12 +706,12 @@
         </div>
     </section>
 
-    <!-- Footer - Updated to match first site -->
+    <!-- Footer - Modernized -->
     <footer>
         <div class="footer-container">
-            <div class="footer-links">
+            <div class="footer-about">
                 <img src="https://wingsofaero.in/wp-content/uploads/2023/03/oie_transparent-150x31.png" alt="Wings of Aero" class="footer-logo">
-                <p>Innovative aviation solutions for a connected world.</p>
+                <p>Innovative aviation solutions for a connected world. We specialize in aerospace vehicle design, analysis, and manufacturing with cutting-edge technology.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -517,32 +722,33 @@
             <div class="footer-links">
                 <h3>Services</h3>
                 <ul>
-                    <li><a href="#">Aerospace Vehicle Design</a></li>
-                    <li><a href="#">Aerospace Vehicle Analysis</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Flight Testing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Aerospace Vehicle Design</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Aerospace Vehicle Analysis</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Manufacturing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Flight Testing</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h3>Company</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Vision and Mission</a></li>
-                    <li><a href="#">Latest News</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Vision and Mission</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Latest News</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h3>Contact</h3>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Employee Corner</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Employee Corner</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 Wings of Aero. All Rights Reserved.
+            &copy; 2023 Wings of Aero. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff4757;"></i> for Aerospace Innovation
         </div>
     </footer>
 </body>

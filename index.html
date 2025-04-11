@@ -4,37 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wings of Aero | Aviation Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #3b82f6;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
+            --primary: #4a90e2;
+            --secondary: #50e3c2;
+            --accent: #f39c12;
+            --light: #f5f7fa;
+            --dark: #34495e;
+            --gray: #94a3b8;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
+            font-family: 'Open Sans', sans-serif;
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
         }
         
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .container {
@@ -76,7 +84,7 @@
         .menu a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             padding: 0.5rem 0;
             transition: all 0.3s ease;
             display: flex;
@@ -122,21 +130,30 @@
             color: var(--primary);
         }
         
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             height: 80vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: white;
-            animation: fadeIn 1.5s ease;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeInUp 1s ease;
         }
         
         .hero h1 {
@@ -168,29 +185,40 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+        
         .section-title {
             text-align: center;
-            margin: 4rem 0 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary);
             position: relative;
+            display: inline-block;
         }
         
-        .section-title::after {
+        .section-title h2::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 4px;
             background-color: var(--accent);
-            margin: 0.5rem auto;
             border-radius: 2px;
         }
         
+        /* Gallery */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            padding: 2rem;
         }
         
         .image-link {
@@ -206,8 +234,8 @@
         }
         
         .image-link:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .image-container {
@@ -239,11 +267,11 @@
             font-weight: 600;
         }
         
+        /* Services */
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            padding: 2rem;
         }
         
         .service-card {
@@ -285,24 +313,146 @@
         }
         
         .service-content p {
-            color: #64748b;
+            color: var(--gray);
             margin-bottom: 1rem;
         }
         
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
             padding: 3rem 0 1rem;
-            margin-top: 4rem;
         }
         
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-logo {
@@ -360,35 +510,85 @@
             font-size: 0.9rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
+        /* Responsive */
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .menu {
-                gap: 1rem;
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+                z-index: 999;
+            }
+            
+            .menu.active {
+                left: 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background-color: rgba(0, 0, 0, 0.1);
             }
             
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .gallery, .services {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Dropdown Menu -->
+    <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <a href="#" class="logo">
                     <i class="fas fa-plane"></i> Wings of Aero
                 </a>
-                <ul class="menu">
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="menu" id="menu">
                     <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
                     <li class="dropdown">
                         <a href="#"><i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i></a>
@@ -398,8 +598,8 @@
                             <li><a href="#"><i class="fas fa-chart-line"></i> Aviation Analytics</a></li>
                         </ul>
                     </li>
-                    <li><a href="file:///Users/rohit/Desktop/TEMS%20TECH/WINGSS/about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="file:///Users/rohit/Desktop/TEMS%20TECH/WINGSS/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -415,112 +615,257 @@
     </section>
 
     <!-- Projects Gallery -->
-    <h2 class="section-title">Our Featured Projects</h2>
-    <div class="gallery">
-        <a href="page1.html" class="image-link">
-            <div class="image-container">
-                <img src="1.jpg" alt="Aircraft Design">
-                <div class="image-title">Aerospace Design</div>
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Featured Projects</h2>
             </div>
-        </a>
-        <a href="page2.html" class="image-link">
-            <div class="image-container">
-                <img src="2.jpg" alt="Flight Control">
-                <div class="image-title">Flight Analysis</div>
+            
+            <div class="gallery">
+                <a href="page1.html" class="image-link">
+                    <div class="image-container">
+                        <img src="1.jpg" alt="Aircraft Design">
+                        <div class="image-title">Aerospace Design</div>
+                    </div>
+                </a>
+                <a href="page2.html" class="image-link">
+                    <div class="image-container">
+                        <img src="2.jpg" alt="Flight Control">
+                        <div class="image-title">Flight Analysis</div>
+                    </div>
+                </a>
+                <a href="page3.html" class="image-link">
+                    <div class="image-container">
+                        <img src="3.jpg" alt="Aviation Tech">
+                        <div class="image-title">Precision Fabrication</div>
+                    </div>
+                </a>
+                <a href="page4.html" class="image-link">
+                    <div class="image-container">
+                        <img src="4.jpg" alt="Training Program">
+                        <div class="image-title">Flight Testing</div>
+                    </div>
+                </a>
             </div>
-        </a>
-        <a href="page3.html" class="image-link">
-            <div class="image-container">
-                <img src="3.jpg" alt="Aviation Tech">
-                <div class="image-title">Precision Fabrication</div>
-            </div>
-        </a>
-        <a href="page4.html" class="image-link">
-            <div class="image-container">
-                <img src="4.jpg" alt="Training Program">
-                <div class="image-title">Flight Testing</div>
-            </div>
-        </a>
-    </div>
+        </div>
+    </section>
 
     <!-- Services Section -->
-    <h2 class="section-title">Our Core Services</h2>
-    <div class="services">
-        <div class="service-card">
-            <div class="service-img">
-                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aerospace Design">
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Services</h2>
             </div>
-            <div class="service-content">
-                <h3>Aerospace Design</h3>
-                <p>Cutting-edge design solutions for next-generation aircraft and spacecraft with advanced simulation tools.</p>
-                <a href="#" class="btn">Learn More</a>
+            
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aerospace Design">
+                    </div>
+                    <div class="service-content">
+                        <h3>Aerospace Design</h3>
+                        <p>Cutting-edge design solutions for next-generation aircraft and spacecraft with advanced simulation tools.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="3.jpg" alt="Flight Analysis">
+                    </div>
+                    <div class="service-content">
+                        <h3>Flight Analysis</h3>
+                        <p>Comprehensive flight data analysis and performance optimization using state-of-the-art analytics.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="4.jpg" alt="Manufacturing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Precision Manufacturing</h3>
+                        <p>Advanced manufacturing techniques for aerospace components with micron-level precision.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="service-card">
-            <div class="service-img">
-                <img src="3.jpg" alt="Flight Analysis">
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
             </div>
-            <div class="service-content">
-                <h3>Flight Analysis</h3>
-                <p>Comprehensive flight data analysis and performance optimization using state-of-the-art analytics.</p>
-                <a href="#" class="btn">Learn More</a>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Completed Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="25">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Industry Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
             </div>
         </div>
-        <div class="service-card">
-            <div class="service-img">
-                <img src="4.jpg" alt="Manufacturing">
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
             </div>
-            <div class="service-content">
-                <h3>Precision Manufacturing</h3>
-                <p>Advanced manufacturing techniques for aerospace components with micron-level precision.</p>
-                <a href="#" class="btn">Learn More</a>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Wings of Aero transformed our approach to aircraft design. Their innovative solutions helped us reduce development time while exceeding all performance benchmarks. The team's expertise is unmatched in the industry."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Carter">
+                    </div>
+                    <div class="author-info">
+                        <h4>John Carter</h4>
+                        <p>CEO, Skyline Aerospace</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Enter subject">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-links">
-                <img src="https://wingsofaero.in/wp-content/uploads/2023/03/oie_transparent-150x31.png" alt="Wings of Aero" class="footer-logo">
-                <p>Innovative aviation solutions for a connected world.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <img src="https://wingsofaero.in/wp-content/uploads/2023/03/oie_transparent-150x31.png" alt="Wings of Aero" class="footer-logo">
+                    <p>Innovative aviation solutions for a connected world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Aerospace Vehicle Design</a></li>
+                        <li><a href="#">Aerospace Vehicle Analysis</a></li>
+                        <li><a href="#">Manufacturing</a></li>
+                        <li><a href="#">Flight Testing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Vision and Mission</a></li>
+                        <li><a href="#">Latest News</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Employee Corner</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-links">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#">Aerospace Vehicle Design</a></li>
-                    <li><a href="#">Aerospace Vehicle Analysis</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Flight Testing</a></li>
-                </ul>
+            <div class="copyright">
+                &copy; 2023 Wings of Aero. All Rights Reserved.
             </div>
-            <div class="footer-links">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Vision and Mission</a></li>
-                    <li><a href="#">Latest News</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Employee Corner</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2023 Wings of Aero. All Rights Reserved.
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = menu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Animate stats counter
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            statNumbers.forEach(stat => {
+                const target = +stat.getAttribute('data-count');
+                const count = +stat.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    stat.innerText = Math.ceil(count + increment);
+                    setTimeout(animateStats, 1);
+                } else {
+                    stat.innerText = target;
+                }
+            });
+        }
+        
+        // Trigger stats animation when section is in view
+        const statsSection = document.querySelector('.stats');
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateStats();
+                observer.unobserve(statsSection);
+            }
+        });
+        
+        observer.observe(statsSection);
+    </script>
 </body>
 </html>
